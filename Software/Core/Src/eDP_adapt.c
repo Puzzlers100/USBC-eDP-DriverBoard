@@ -44,6 +44,21 @@ void PUZ_USBPD_INIT(uint8_t numPorts){
 
 	Port_Data[0].orientation = NONE;
 	I2C_init();
+
+	if(Port_Data[0].boardVerion != 0){
+		INA234_READ();
+		Port_Data[0].idleConsup = ADC_Vals[2];
+
+		TIM2->CCR2 = TIM2->ARR / 10;
+		HAL_GPIO_WritePin(BL_Enable_GPIO_Port, BL_Enable_Pin, GPIO_PIN_SET);
+		osDelay(3);
+
+		INA234_READ();
+		Port_Data[0].backlightPwrScale =  (ADC_Vals[2] - Port_Data[0].idleConsup) * 10;
+		HAL_GPIO_WritePin(BL_Enable_GPIO_Port, BL_Enable_Pin, GPIO_PIN_RESET);
+
+	}
+
 }
 
 void PUZ_USBPD_StorePDOs(uint8_t PortNum, uint8_t *Ptr, uint32_t Size){
@@ -152,6 +167,9 @@ void PUZ_USBPD_SNK_Capability(uint8_t PortNum, uint32_t *PtrRequestData, USBPD_C
 
 		}
 	}
+
+	if(Port_Data[PortNum].maxCurrent  > 1550) osThreadFlagsSet(I2C_dat.thread, 0x30);
+
 	*PtrRequestData = rdo.d32;
 }
 
@@ -212,6 +230,7 @@ USBPD_StatusTypeDef PUZ_USBPD_Specifics(uint8_t PortNum, USBPD_VDM_Command_Typed
 					*pVDO = 0x0000009A;
 					if(Port_Data[0].maxCurrent > 1200){
 						*pVDO |= 0x0000000C;
+						TIM2->CCR2 = 0;
 						HAL_GPIO_WritePin(BL_Enable_GPIO_Port, BL_Enable_Pin, GPIO_PIN_SET);
 					} else {
 					}
@@ -233,13 +252,12 @@ USBPD_StatusTypeDef PUZ_USBPD_ENTER( uint8_t PortNum, uint16_t SVID, uint32_t Mo
 void PUZ_USBPD_PlugDet(uint8_t PortNum){
 	int CC = DPM_Params[PortNum].ActiveCCIs;
 	Port_Data[PortNum].orientation = CC == 1 ? FLIPPED : (CC == 2 ? NORMAL : NONE);
-	uint32_t SET = CC == 1 ? 0x33 : ( CC == 2 ? 0x32 : 0x38);
+	uint32_t SET = CC == 1 ? 0x03 : ( CC == 2 ? 0x02 : 0x08);
 	osThreadFlagsSet(I2C_dat.thread, SET);
 }
 
 void initTask(){
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
-	TIM2->CCR2 = 0x00002CCC;
 }
 
 void mainLoop(){

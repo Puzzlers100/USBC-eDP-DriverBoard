@@ -56,14 +56,16 @@ typedef enum e_plug_ort{
 typedef struct s_src_pdos{
 	uint8_t boardVerion;
 	uint8_t numPDOs;
-	uint32_t PDOs[7];
 	uint8_t mismatch;
-	uint32_t maxCurrent;
-	USBPD_DiscoveryIdentity_TypeDef Identity;
-	uint16_t SVIDs[12];
 	uint8_t numSVIDs;
+	uint16_t SVIDs[12];
+	uint32_t idleConsup;
+	uint32_t backlightPwrScale;
+	uint32_t PDOs[7];
+	uint32_t maxCurrent;
 	uint32_t DP_MODE;
 	plug_Ort orientation;
+	USBPD_DiscoveryIdentity_TypeDef Identity;
 } USBPD_DATA;
 
 extern USBPD_DATA * Port_Data;

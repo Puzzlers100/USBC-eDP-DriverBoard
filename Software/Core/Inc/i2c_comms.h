@@ -53,6 +53,8 @@ extern I2C_DATA I2C_dat;
  *
  */
 
+void INA234_READ();
+
 void I2C_init();
 
 #endif /* INC_I2C_COMMS_H_ */

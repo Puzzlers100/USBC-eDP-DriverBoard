@@ -40,14 +40,11 @@ void INA_CONF(){
 }
 
 void INA234_READ(){
-	uint16_t conf;
-	HAL_I2C_Mem_Read(&hi2c2, I2C_dat.INA_addr, 0x05, 1, (uint8_t*)&conf, 2, 35);
-	uint16_t current;
-	HAL_I2C_Mem_Read(&hi2c2, I2C_dat.INA_addr, 0x04, 1, (uint8_t*)&current, 2, 35);
-	ADC_Vals[2] = (uint32_t)((abs(((int16_t)((current&(0xff)) << 8 | (current&(0xff00)) >> 8))>>4) * 30405) >> 14);
-	uint16_t voltage;
-	HAL_I2C_Mem_Read(&hi2c2, I2C_dat.INA_addr, 0x02, 1, (uint8_t*)&voltage, 2, 35);
-	ADC_Vals[3] = ((((voltage&(0xff)) << 4 | (voltage&(0xff00)) >> 12)) * 25.6);
+	uint16_t Var;
+	HAL_I2C_Mem_Read(&hi2c2, I2C_dat.INA_addr, 0x04, 1, (uint8_t*)&Var, 2, 35);
+	ADC_Vals[2] = (uint32_t)((abs(((int16_t)((Var&(0xff)) << 8 | (Var&(0xff00)) >> 8))>>4) * 30405) >> 14); //Current
+	HAL_I2C_Mem_Read(&hi2c2, I2C_dat.INA_addr, 0x02, 1, (uint8_t*)&Var, 2, 35);
+	ADC_Vals[3] = ((((Var&(0xff)) << 4 | (Var&(0xff00)) >> 12)) * 25.6); //Voltage
 }
 
 
@@ -206,5 +203,7 @@ const osThreadAttr_t I2C_Task_attr = {
 
 void I2C_init(){
 	I2C_dat.thread = osThreadNew(I2C_Task, NULL, &I2C_Task_attr);
-	if(Port_Data[0].boardVerion != 0) INA_CONF();
+	if(Port_Data[0].boardVerion != 0){
+		INA_CONF();
+	}
 }
