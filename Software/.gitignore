@@ -1,0 +1,6 @@
+*.d
+*.o
+*.su
+*.cyclo
+*.elf
+.ghost*
