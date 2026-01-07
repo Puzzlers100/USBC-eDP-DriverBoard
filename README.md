@@ -26,11 +26,13 @@ You will also require a 30 pin eDP cable. I used a 250mm one for my design.
 
 ## Hardware
 The mechanical design is published as a set of solidworks files as well as a set of 3MFs. The 3MFs were made for the Prusa MK3S+ with the MMU2, though they will likely work with most slicers and printers that support multi filament printing. They are designed to be printed in PETG with appropriate scaling to account for shrinkage. A couple of the parts also have support blocks with a PLA interface so they should be removable. 
+
 To fully assemble the enclosure, you will need:
-	-19x [M2 4.8mm Wide, 1.5mm thick nuts](https://www.mcmaster.com/92513A110/)
-	-13x [M2 10mm Countersunk Screw](https://www.mcmaster.com/90236A106/)
-	-17x [M2 6mm Countersunk Screw](https://www.mcmaster.com/90236A104/)
-	-13x [M2 4mm Countersunk Screw](https://www.mcmaster.com/90236A102/) 
+
+- 19x [M2 4.8mm Wide, 1.5mm thick nuts](https://www.mcmaster.com/92513A110/)
+- 13x [M2 10mm Countersunk Screw](https://www.mcmaster.com/90236A106/)
+- 17x [M2 6mm Countersunk Screw](https://www.mcmaster.com/90236A104/)
+- 13x [M2 4mm Countersunk Screw](https://www.mcmaster.com/90236A102/) 
 	
 ## TODO
 Future Plans are mostly in the software:
