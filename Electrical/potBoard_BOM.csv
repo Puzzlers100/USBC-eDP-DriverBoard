@@ -1,0 +1,4 @@
+Id;Designator;Footprint;Quantity;Designation;Manufacturer;Ref
+1;R1;RK10J12R0A0B;1;10k;Alps Alpine;RK10J12R0A0B
+2;J1;FH19C-4S-0.5SH(10);1;Conn_01x05;Hirose;FH19C-4S-0.5SH(10)
+3;M1,M2,M3;MS04-M2-2;3;Standoff;PEM;MSO4-M2-2
