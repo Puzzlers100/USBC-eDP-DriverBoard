@@ -4,7 +4,7 @@
 This project works to adapt a USB-C DisplayPort alt-mode input into an embedded DisplayPort output. It uses an STM32 to communicate over the USB-C Power delivery protocol, acts as a USB Hub providing one USB 3.0 Superspeed port and 2 USB 2.0 High Speed ports. It also negotiates the highest current available from the source, and internally generates the 12V needed to run the display.  It works by simply routing the same DP signals through to the output, and does no signal processing of it's own. 
 ## USE  
 
-![Portable monitor built using this driver board](docPics/portableMon.png)
+![Portable monitor built using this driver board](docPics/monitor.jpg)
 
 It should work with most 30pin eDP panels. Since it has no native processing on it's own, the DP generation is set by the computer and panel used. Generally, this allows for up to 1080p panels. Exceptionally large or exceptionally bright panels may not work, as those panels tend to draw a large current on the 12V rail. I highly recommend sticking to panels that draw a continuous current of no more than 800mA for the backlight.
 
@@ -18,6 +18,9 @@ The USB 2.0 ports are configured to run outside of the USB specification. They c
 
 #### PCBs
 BOMs for both the main board and secondary board are in the electrical folder, and contain all the parts required to build a fully functional PCB.  The main board is specifically designed to be manufactured using JLC-PCBs JLC04081H-3313 stackup, as the USB lines are impedance matched, and the generated gerber files are designed to be used with JLC. The potentiometer board has no such restrictions, but I recommend using a 0.8mm PCB. Currently there is no pick and place support, so you will need to hand solder the PCBs. The passives should be rated for at least 12V
+
+## Firmware
+The firmware is written using the STMCube Ide. To get the PCB to work, you need to compile it using cube IDE, then upload it to the STM32 using either a J-link or STlink. If you have a TagConnect TC2030, there is a pad connector available on the PCB, if not, the pads are big enough you could solder on some leads to them.
 
 ## FFC cables
 The design uses a Type A, 4pin, 0.5mm pitch FFC cable to connect the main board and pot board. For my design, I used a 10cm long cable, though what length you need may depend on your chosen LCD and layout
