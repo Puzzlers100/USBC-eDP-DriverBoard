@@ -4,7 +4,7 @@
 This project works to adapt a USB-C DisplayPort alt-mode input into an embedded DisplayPort output. It uses an STM32 to communicate over the USB-C Power delivery protocol, acts as a USB Hub providing one USB 3.0 Superspeed port and 2 USB 2.0 High Speed ports. It also negotiates the highest current available from the source, and internally generates the 12V needed to run the display.  It works by simply routing the same DP signals through to the output, and does no signal processing of it's own. 
 ## USE  
 
-![Portable monitor built using this driver board](docPics/monitor.jpg)
+![Portable monitor built using this driver board](docPics/Monitor.jpg)
 
 It should work with most 30pin eDP panels. Since it has no native processing on it's own, the DP generation is set by the computer and panel used. Generally, this allows for up to 1080p panels. Exceptionally large or exceptionally bright panels may not work, as those panels tend to draw a large current on the 12V rail. I highly recommend sticking to panels that draw a continuous current of no more than 800mA for the backlight.
 
