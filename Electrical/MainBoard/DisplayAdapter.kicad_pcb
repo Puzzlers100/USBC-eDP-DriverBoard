@@ -1266,7 +1266,7 @@
 				)
 			)
 		)
-		(property "Value" "36K"
+		(property "Value" "30K"
 			(at 8.95 4.4 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -1990,7 +1990,7 @@
 				)
 			)
 		)
-		(property "Value" "47u"
+		(property "Value" "22u"
 			(at 8.95 4.4 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -3221,7 +3221,7 @@
 				)
 			)
 		)
-		(property "Value" "1.2K"
+		(property "Value" "4K7"
 			(at 8.95 4.4 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -6870,7 +6870,7 @@
 				)
 			)
 		)
-		(property "Value" "1.2K"
+		(property "Value" "4K7"
 			(at 8.95 4.4 0)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -15303,7 +15303,7 @@
 				)
 			)
 		)
-		(property "Value" "36K"
+		(property "Value" "30K"
 			(at 8.95 4.4 180)
 			(unlocked yes)
 			(layer "F.Fab")
@@ -18795,7 +18795,7 @@
 				)
 			)
 		)
-		(property "Value" "10K"
+		(property "Value" "4K7"
 			(at 8.95 4.4 180)
 			(unlocked yes)
 			(layer "F.Fab")
